@@ -46,6 +46,7 @@ namespace RT.Contacts.Service
         public void Update(User entity)
         {
             _dbContext.Users.Update(entity);
+            _dbContext.SaveChanges();
         }
     }
 }

@@ -15,5 +15,6 @@ namespace RT.Contacts.Domain.Interfaces
         Result<UserDO> Add(UserDO model);
         Result<UserDO> Update(UserDO model);
         Result<bool> Delete(int id);
+        Task<Result<bool>> SaveReportsDataAsync(int reportID);
     }
 }

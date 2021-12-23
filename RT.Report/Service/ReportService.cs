@@ -43,6 +43,7 @@ namespace RT.Reports.Service
         public void Update(DataLayer.Report entity)
         {
             _dbContext.Reports.Update(entity);
+            _dbContext.SaveChanges();
         }
     }
 }

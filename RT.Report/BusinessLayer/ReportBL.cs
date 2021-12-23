@@ -1,16 +1,21 @@
 ﻿using AutoMapper;
+using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using RT.Reports.DataLayer;
+using RT.Reports.Domain;
+using RT.Reports.Domain.Enums;
 using RT.Reports.Domain.Interfaces;
 using RT.Reports.Domain.Models;
+using RT.Reports.Helpers;
 using RT.Reports.ResultType;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RT.Reports.BusinessLayer
 {
-    public class ReportBL : IReportBL
+    public class ReportBL : IReportBL, IConsumer<ReportRequestDO>
     {
         private IReport _reportService;
         private IMapper _mapper;
@@ -39,6 +44,40 @@ namespace RT.Reports.BusinessLayer
             return result;
         }
 
+        public async Task Consume(ConsumeContext<ReportRequestDO> context)
+        {
+
+            try
+            {
+                Report entity = new Report()
+                {
+                    CityId = context.Message.CityID,
+                    Uuid = context.Message.UserID.ToString(),
+                    CreateTime = DateTime.Now,
+                    CreateUserId = context.Message.UserID,
+                    UpdateTime = DateTime.Now,
+                    UpdateUserId = context.Message.UserID,
+                    IsActive = true,
+                    IsDeleted = false,
+                    RequestStatusId = (int)ReportStatusEnum.Preparing,
+                    PhoneCountInLocation = 0,
+                    RequestTime = DateTime.Now,
+                    UsersCountInLocation = 0
+                };
+                _reportService.Create(entity);
+
+                HttpHelper<Result<bool>> helper = new HttpHelper<Result<bool>>();
+
+                var result = await helper.GetSingleItemRequest("https://localhost:44347/api/User/Report?reportsID=" + entity.Id, System.Threading.CancellationToken.None);
+
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+
+        }
         public Result<bool> Delete(int id)
         {
             Result<bool> result;
@@ -92,6 +131,7 @@ namespace RT.Reports.BusinessLayer
             Result<ReportDO> result;
             try
             {
+
                 var updateEntity = _mapper.Map<ReportDO, Report>(model);
                 _reportService.Update(updateEntity);
                 result = new Result<ReportDO>(ResultTypeEnum.Success, model, "ReportBL.Update Succeed", "ReportBL.Update Succeed");

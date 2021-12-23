@@ -1,4 +1,6 @@
 using AutoMapper;
+using GreenPipes;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -43,7 +45,26 @@ namespace RT.Reports
             var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
             var builder = new NpgsqlConnectionStringBuilder(connectionString);
             services.AddDbContext<RTReportsDataContext>(options => options.UseNpgsql(builder.ConnectionString));
-
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<ReportBL>();
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                {
+                    cfg.UseHealthCheck(provider);
+                    cfg.Host(new Uri("rabbitmq://localhost"), h =>
+                    {
+                        h.Username("tata");
+                        h.Password("tata");
+                    });
+                    cfg.ReceiveEndpoint("customQueue", ep =>
+                    {
+                        ep.PrefetchCount = 16;
+                        ep.UseMessageRetry(r => r.Interval(2, 100));
+                        ep.ConfigureConsumer<ReportBL>(provider);
+                    });
+                }));
+            });
+            services.AddMassTransitHostedService();
             var mappingConfig = new MapperConfiguration(mc =>
         {
             mc.AddProfile(new MapperBL());

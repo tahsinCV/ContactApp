@@ -43,6 +43,7 @@ namespace RT.Reports.Service
         public void Update(City entity)
         {
             _dbContext.Cities.Update(entity);
+            _dbContext.SaveChanges();
         }
     }
 }

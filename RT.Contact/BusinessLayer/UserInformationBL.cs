@@ -17,6 +17,14 @@ namespace RT.Contacts.BusinessLayer
         private IUserInformation _userInformationService;
         private IMapper _mapper;
 
+        public UserInformationBL(IServiceProvider serviceProvider)
+        {
+            _mapper = serviceProvider.GetRequiredService<IMapper>();
+            _userInformationService = serviceProvider.GetRequiredService<IUserInformation>();
+        }
+
+
+
         public Result<UserInformationDO> Add(UserInformationDO model)
         {
             Result<UserInformationDO> result;

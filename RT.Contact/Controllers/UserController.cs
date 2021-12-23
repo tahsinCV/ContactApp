@@ -3,6 +3,7 @@ using RT.Contacts.Domain.Interfaces;
 using RT.Contacts.Domain.Models;
 using RT.Contacts.ResultType;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,6 +24,13 @@ namespace RT.Contacts.Controllers
         public Result<List<UserDO>> Get()
         {
             return _userBL.GetAll();
+        }
+        [Route("Report")]
+        [HttpGet]
+        public async Task<Result<bool>> GetInfoByReportAsync([FromQuery] int reportsID)
+        {
+            return  await _userBL.SaveReportsDataAsync(reportsID);
+
         }
 
         // GET api/<UserController>/5

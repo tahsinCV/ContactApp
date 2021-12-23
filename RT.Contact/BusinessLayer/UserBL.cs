@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using RT.Contacts.DataLayer;
+using RT.Contacts.Domain.Enums;
 using RT.Contacts.Domain.Interfaces;
 using RT.Contacts.Domain.Models;
+using RT.Contacts.Helpers;
 using RT.Contacts.ResultType;
 using System;
 using System.Collections.Generic;
@@ -11,15 +13,17 @@ using System.Threading.Tasks;
 
 namespace RT.Contacts.BusinessLayer
 {
-    public class UserBL:IUserBL
+    public class UserBL : IUserBL
     {
         private IUser _userService;
         private IMapper _mapper;
+        private IUserInformationBL _userInformationBL;
 
         public UserBL(IServiceProvider serviceProvider)
         {
             _mapper = serviceProvider.GetRequiredService<IMapper>();
             _userService = serviceProvider.GetRequiredService<IUser>();
+            _userInformationBL = serviceProvider.GetRequiredService<IUserInformationBL>();
         }
 
         public Result<UserDO> Add(UserDO model)
@@ -84,6 +88,43 @@ namespace RT.Contacts.BusinessLayer
             catch (Exception ex)
             {
                 result = new Result<UserDO>(false, ResultTypeEnum.Error, "An error occured when getting UserBL.GetByID ! Ex : ", ex.Message);
+            }
+            return result;
+        }
+
+        public async Task<Result<bool>> SaveReportsDataAsync(int reportsID)
+        {
+            Result<bool> result = new Result<bool>();
+            try
+            {
+                HttpHelper<Result<ReportDO>> helper = new HttpHelper<Result<ReportDO>>();
+
+                Result<ReportDO> response = await helper.GetSingleItemRequest("https://localhost:44348/api/Report/" + reportsID, System.Threading.CancellationToken.None);
+
+                var userInformationResponse = _userInformationBL.GetAll();
+                if (userInformationResponse.IsSuccess)
+                {
+                    ReportDataResponseDO data = new ReportDataResponseDO()
+                    {
+                        UserInformationList = userInformationResponse.Data.Where(w => w.CityId == response.Data.CityId).ToList()
+                    };
+                    response.Data.RequestStatusId = (int)ReportStatusEnum.Prepared;
+                    response.Data.PhoneCountInLocation = data.UserInformationList.Where(w => !string.IsNullOrWhiteSpace(w.PhoneNumber)).Count();
+                    response.Data.UsersCountInLocation = data.UserInformationList.GroupBy(g => g.CityId).Count();
+                    response.Data.UpdateTime = DateTime.Now;
+
+
+                    HttpHelper<ReportDO> helperUpdate = new HttpHelper<ReportDO>();
+                    await helperUpdate.PutRequest("https://localhost:44348/api/Report/"+response.Data.Id, response.Data, System.Threading.CancellationToken.None);
+
+                    result = new Result<bool>(true, ResultTypeEnum.Success, true, "UserBL.SaveReportsData Success");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                result = new Result<bool>(false, ResultTypeEnum.Error, "An error occured when getting UserBL.SaveReportsData ! Ex : ", ex.Message);
             }
             return result;
         }
