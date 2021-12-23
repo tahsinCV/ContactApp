@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace RT.Report.DataLayer
+namespace RT.Reports.DataLayer
 {
     public partial class RTReportsDataContext : DbContext
     {

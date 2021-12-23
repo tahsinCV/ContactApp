@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RT.Report.ResultType
+namespace RT.Reports.ResultType
 {
     public class Result<T> : IResult<T>
     {

@@ -22,7 +22,7 @@ namespace RT.Contact.Domain.Models
         public DateTime CreateTime { get; set; }
         public int UpdateUserId { get; set; }
         public DateTime UpdateTime { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

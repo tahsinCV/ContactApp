@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 
-#nullable disable
-
-namespace RT.Reports.DataLayer
+namespace RT.Reports.Domain.Models
 {
-    public partial class City
+    public class CityDO
     {
-        public City()
+        public CityDO()
         {
-            Reports = new HashSet<Report>();
+
         }
 
         public int Id { get; set; }
@@ -19,9 +16,8 @@ namespace RT.Reports.DataLayer
         public int CreateUserId { get; set; }
         public DateTime UpdateTime { get; set; }
         public int UpdateUserId { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
 
-        public virtual ICollection<Report> Reports { get; set; }
     }
 }

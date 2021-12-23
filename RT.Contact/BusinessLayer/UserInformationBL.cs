@@ -56,8 +56,8 @@ namespace RT.Contact.BusinessLayer
             Result<List<UserInformationDO>> result;
             try
             {
-                List<UserInformation> UserInformationList = _userInformationService.GetAll().ToList();
-                List<UserInformationDO> mappedList = _mapper.Map<List<UserInformation>, List<UserInformationDO>>(UserInformationList);
+                List<UserInformation> userInformationList = _userInformationService.GetAll().ToList();
+                List<UserInformationDO> mappedList = _mapper.Map<List<UserInformation>, List<UserInformationDO>>(userInformationList);
                 result = new Result<List<UserInformationDO>>(true, ResultTypeEnum.Success, mappedList, "UserInformationBL.GetAll Success");
             }
             catch (Exception ex)
@@ -72,8 +72,8 @@ namespace RT.Contact.BusinessLayer
             Result<UserInformationDO> result;
             try
             {
-                UserInformation UserInformation = _userInformationService.GetByID(id);
-                UserInformationDO mapperUserInformation = _mapper.Map<UserInformation, UserInformationDO>(UserInformation);
+                UserInformation userInformation = _userInformationService.GetByID(id);
+                UserInformationDO mapperUserInformation = _mapper.Map<UserInformation, UserInformationDO>(userInformation);
                 result = new Result<UserInformationDO>(true, ResultTypeEnum.Success, mapperUserInformation, "UserInformationBL.GetByID Success");
             }
             catch (Exception ex)

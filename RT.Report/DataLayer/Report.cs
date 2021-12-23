@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace RT.Report.DataLayer
+namespace RT.Reports.DataLayer
 {
     public partial class Report
     {

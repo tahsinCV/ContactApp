@@ -1,22 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace RT.Contact.Domain.Models
+namespace RT.Reports.Domain.Models
 {
-    public class UserDO
+    public class ReportDO
     {
-        public UserDO()
+
+        public ReportDO()
         {
-
+                
         }
-
         public int Id { get; set; }
         public string Uuid { get; set; }
-        public string Name { get; set; }
-        public string SurName { get; set; }
-        public string CompanyName { get; set; }
+        public int CityId { get; set; }
+        public int RequestStatusId { get; set; }
+        public int UsersCountInLocation { get; set; }
+        public int PhoneCountInLocation { get; set; }
+        public DateTime RequestTime { get; set; }
         public int CreateUserId { get; set; }
         public DateTime CreateTime { get; set; }
         public int UpdateUserId { get; set; }

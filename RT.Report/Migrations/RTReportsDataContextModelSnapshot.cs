@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using RT.Report.DataLayer;
+using RT.Reports.DataLayer;
 
-namespace RT.Report.Migrations
+namespace RT.Reports.Migrations
 {
     [DbContext(typeof(RTReportsDataContext))]
     partial class RTReportsDataContextModelSnapshot : ModelSnapshot

@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,12 +8,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RT.Reports.BusinessLayer;
+using RT.Reports.Domain.Interfaces;
+using RT.Reports.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RT.Report
+namespace RT.Reports
 {
     public class Startup
     {
@@ -32,7 +36,22 @@ namespace RT.Report
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RT.Report", Version = "v1" });
             });
+            var mappingConfig = new MapperConfiguration(mc =>
+        {
+            mc.AddProfile(new MapperBL());
+        });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services.AddScoped<ICity, CityService>();
+            services.AddScoped<ICityBL, CityBL>();
+            services.AddScoped<IReport, ReportService>();
+            services.AddScoped<IReportBL, ReportBL>();
+            services.AddScoped<IReportStatus, ReportStatusService>();
+            services.AddScoped<IReportStatusBL, ReportStatusBL>();
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

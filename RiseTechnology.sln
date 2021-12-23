@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{EAA2C2CB-4D16-4BBB-929E-802E2A858CEF}"
 EndProject
@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contact", "Contact", "{82BC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Report", "Report", "{838EAA19-DC93-461B-8E1D-D3BBE5C5A9B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RT.Contact", "RT.Contact\RT.Contact.csproj", "{5610F5BD-8051-4159-9832-DCC6EACE8F44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RT.Contacts", "RT.Contact\RT.Contacts.csproj", "{5610F5BD-8051-4159-9832-DCC6EACE8F44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RT.Report", "RT.Report\RT.Report.csproj", "{B6074664-5F02-48BE-B97B-5D563C87EB75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RT.Reports", "RT.Report\RT.Reports.csproj", "{B6074664-5F02-48BE-B97B-5D563C87EB75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
