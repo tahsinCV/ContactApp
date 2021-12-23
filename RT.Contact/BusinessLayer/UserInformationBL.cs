@@ -35,18 +35,18 @@ namespace RT.Contacts.BusinessLayer
             return result;
         }
 
-        public Result<UserInformationDO> Delete(UserInformationDO model)
+        public Result<bool> Delete(int id)
         {
-            Result<UserInformationDO> result;
+            Result<bool> result;
             try
             {
-                var entity = _mapper.Map<UserInformationDO, UserInformation>(model);
+                var entity = _userInformationService.GetByID(id);
                 _userInformationService.Delete(entity);
-                result = new Result<UserInformationDO>(true, ResultTypeEnum.Success, model, "UserInformationBL.Delete Succeed", "UserInformationBL.Delete Succeed");
+                result = new Result<bool>(true, ResultTypeEnum.Success, true, "UserInformationBL.Delete Succeed", "UserInformationBL.Delete Succeed");
             }
             catch (Exception ex)
             {
-                result = new Result<UserInformationDO>(false, ResultTypeEnum.Error, model, "UserInformationBL.Delete Error : " + ex.Message, "UserInformationBL.Delete Error : " + ex.Message);
+                result = new Result<bool>(false, ResultTypeEnum.Error, false, "UserInformationBL.Delete Error : " + ex.Message, "UserInformationBL.Delete Error : " + ex.Message);
             }
             return result;
         }

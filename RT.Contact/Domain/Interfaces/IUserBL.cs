@@ -14,6 +14,6 @@ namespace RT.Contacts.Domain.Interfaces
         Result<UserDO> GetByID(int id);
         Result<UserDO> Add(UserDO model);
         Result<UserDO> Update(UserDO model);
-        Result<UserDO> Delete(UserDO model);
+        Result<bool> Delete(int id);
     }
 }

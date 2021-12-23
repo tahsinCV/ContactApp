@@ -10,6 +10,6 @@ namespace RT.Reports.Domain.Interfaces
         Result<ReportStatusDO> GetByID(int id);
         Result<ReportStatusDO> Add(ReportStatusDO model);
         Result<ReportStatusDO> Update(ReportStatusDO model);
-        Result<ReportStatusDO> Delete(ReportStatusDO model);
+        Result<bool> Delete(int id);
     }
 }

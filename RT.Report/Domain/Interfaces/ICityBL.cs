@@ -11,6 +11,6 @@ namespace RT.Reports.Domain.Interfaces
         Result<CityDO> GetByID(int id);
         Result<CityDO> Add(CityDO model);
         Result<CityDO> Update(CityDO model);
-        Result<CityDO> Delete(CityDO model);
+        Result<bool> Delete(int id);
     }
 }

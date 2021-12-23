@@ -39,18 +39,18 @@ namespace RT.Reports.BusinessLayer
             return result;
         }
 
-        public Result<ReportDO> Delete(ReportDO model)
+        public Result<bool> Delete(int id)
         {
-            Result<ReportDO> result;
+            Result<bool> result;
             try
             {
-                var entity = _mapper.Map<ReportDO, Report>(model);
+                var entity = _reportService.GetByID(id);
                 _reportService.Delete(entity);
-                result = new Result<ReportDO>(true, ResultTypeEnum.Success, model, "ReportBL.Delete Succeed", "ReportBL.Delete Succeed");
+                result = new Result<bool>(true, ResultTypeEnum.Success, true, "ReportBL.Delete Succeed", "ReportBL.Delete Succeed");
             }
             catch (Exception ex)
             {
-                result = new Result<ReportDO>(false, ResultTypeEnum.Error, model, "ReportBL.Delete Error : " + ex.Message, "ReportBL.Delete Error : " + ex.Message);
+                result = new Result<bool>(false, ResultTypeEnum.Error, false, "ReportBL.Delete Error : " + ex.Message, "ReportBL.Delete Error : " + ex.Message);
             }
             return result;
         }
