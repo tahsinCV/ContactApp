@@ -17,6 +17,8 @@ using RT.Contacts.Domain.Interfaces;
 using RT.Contacts.Service;
 using AutoMapper;
 using RT.Contacts.BusinessLayer;
+using RT.Contacts.DataLayer;
+using Npgsql;
 
 namespace RT.Contacts
 {
@@ -32,12 +34,16 @@ namespace RT.Contacts
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+           
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RT.Contact", Version = "v1" });
             });
+
+            var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            var builder = new NpgsqlConnectionStringBuilder(connectionString);
+            services.AddDbContext<RTDataContext>(options => options.UseNpgsql(builder.ConnectionString));
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MapperBL());

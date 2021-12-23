@@ -3,12 +3,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Npgsql;
 using RT.Reports.BusinessLayer;
+using RT.Reports.DataLayer;
 using RT.Reports.Domain.Interfaces;
 using RT.Reports.Service;
 using System;
@@ -30,12 +33,17 @@ namespace RT.Reports
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+     
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RT.Report", Version = "v1" });
             });
+
+            var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
+            var builder = new NpgsqlConnectionStringBuilder(connectionString);
+            services.AddDbContext<RTReportsDataContext>(options => options.UseNpgsql(builder.ConnectionString));
+
             var mappingConfig = new MapperConfiguration(mc =>
         {
             mc.AddProfile(new MapperBL());
