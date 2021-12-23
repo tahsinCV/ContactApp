@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace RT.Contact.DataLayer
+namespace RT.Contacts.DataLayer
 {
     public partial class RTDataContext : DbContext
     {

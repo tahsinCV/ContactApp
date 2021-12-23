@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RT.Contact.DataLayer;
-using RT.Contact.Domain.Interfaces;
+using RT.Contacts.DataLayer;
+using RT.Contacts.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RT.Contact.Service
+namespace RT.Contacts.Service
 {
     public class UserInformationService : IUserInformation
     {

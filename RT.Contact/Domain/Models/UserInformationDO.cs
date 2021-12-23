@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RT.Contact.Domain.Models
+namespace RT.Contacts.Domain.Models
 {
     public class UserInformationDO
     {

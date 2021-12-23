@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace RT.Contact.DataLayer
+namespace RT.Contacts.DataLayer
 {
     public partial class City
     {

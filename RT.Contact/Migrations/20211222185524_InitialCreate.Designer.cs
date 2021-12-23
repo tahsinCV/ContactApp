@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using RT.Contact.DataLayer;
+using RT.Contacts.DataLayer;
 
-namespace RT.Contact.Migrations
+namespace RT.Contacts.Migrations
 {
     [DbContext(typeof(RTDataContext))]
     [Migration("20211222185524_InitialCreate")]

@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using RT.Contact.DataLayer;
-using RT.Contact.Domain.Interfaces;
-using RT.Contact.Domain.Models;
-using RT.Contact.ResultType;
+using RT.Contacts.DataLayer;
+using RT.Contacts.Domain.Interfaces;
+using RT.Contacts.Domain.Models;
+using RT.Contacts.ResultType;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RT.Contact.BusinessLayer
+namespace RT.Contacts.BusinessLayer
 {
     public class UserInformationBL:IUserInformationBL
     {

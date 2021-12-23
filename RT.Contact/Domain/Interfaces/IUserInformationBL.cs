@@ -1,11 +1,11 @@
-﻿using RT.Contact.Domain.Models;
-using RT.Contact.ResultType;
+﻿using RT.Contacts.Domain.Models;
+using RT.Contacts.ResultType;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RT.Contact.Domain.Interfaces
+namespace RT.Contacts.Domain.Interfaces
 {
     public interface IUserInformationBL
     {

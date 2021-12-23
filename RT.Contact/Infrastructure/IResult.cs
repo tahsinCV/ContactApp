@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RT.Contact.ResultType
+namespace RT.Contacts.ResultType
 {
     public interface IResult<T> : IResult
     {

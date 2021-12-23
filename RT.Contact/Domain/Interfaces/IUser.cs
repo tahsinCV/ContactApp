@@ -1,10 +1,10 @@
-﻿using RT.Contact.DataLayer;
+﻿using RT.Contacts.DataLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RT.Contact.Domain.Interfaces
+namespace RT.Contacts.Domain.Interfaces
 {
     public interface IUser
     {

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using RT.Contact.DataLayer;
-using RT.Contact.Domain.Models;
+using RT.Contacts.DataLayer;
+using RT.Contacts.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RT.Contact.BusinessLayer
+namespace RT.Contacts.BusinessLayer
 {
     public class MapperBL:Profile
     {

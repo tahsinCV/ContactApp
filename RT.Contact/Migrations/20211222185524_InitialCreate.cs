@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace RT.Contact.Migrations
+namespace RT.Contacts.Migrations
 {
     public partial class InitialCreate : Migration
     {

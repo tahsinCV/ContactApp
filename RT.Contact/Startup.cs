@@ -13,12 +13,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore;
-using RT.Contact.Domain.Interfaces;
-using RT.Contact.Service;
+using RT.Contacts.Domain.Interfaces;
+using RT.Contacts.Service;
 using AutoMapper;
-using RT.Contact.BusinessLayer;
+using RT.Contacts.BusinessLayer;
 
-namespace RT.Contact
+namespace RT.Contacts
 {
     public class Startup
     {
